@@ -1,0 +1,65 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100);
+.hr {
+  width: 100%;
+  height: 1px;
+  display: block;
+  position: relative;
+  margin-bottom: 0em;
+  padding: 0 0;
+}
+.hr:after, .hr:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 50%;
+  left: 0;
+}
+.hr:before {
+  background: linear-gradient(90deg, #5e49ff 0%, #5e49ff 50%, transparent 50%, transparent 100%);
+  background-size: 15px;
+  background-position: center;
+  z-index: 1;
+}
+.hr:after {
+  transition: opacity 0.3s ease, -webkit-animation 0.3s ease;
+  transition: opacity 0.3s ease, animation 0.3s ease;
+  transition: opacity 0.3s ease, animation 0.3s ease, -webkit-animation 0.3s ease;
+  background: linear-gradient(to right, #62efab 5%, #F2EA7D 15%, #F2EA7D 25%, #FF8797 35%, #FF8797 45%, #e1a4f4 55%, #e1a4f4 65%, #82fff4 75%, #82fff4 85%, #62efab 95%);
+  background-size: 200%;
+  background-position: 0%;
+  -webkit-animation: bar 15s linear infinite;
+          animation: bar 15s linear infinite;
+}
+@-webkit-keyframes bar {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+@keyframes bar {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+.hr.anim:before {
+  background: linear-gradient(90deg, #5e49ff 0%, #5e49ff 5%, transparent 5%, transparent 10%, #5e49ff 10%, #5e49ff 15%, transparent 15%, transparent 20%, #5e49ff 20%, #5e49ff 25%, transparent 25%, transparent 30%, #5e49ff 30%, #5e49ff 35%, transparent 35%, transparent 40%, #5e49ff 40%, #5e49ff 45%, transparent 45%, transparent 50%, #5e49ff 50%, #5e49ff 55%, transparent 55%, transparent 60%, #5e49ff 60%, #5e49ff 65%, transparent 65%, transparent 70%, #5e49ff 70%, #5e49ff 75%, transparent 75%, transparent 80%, #5e49ff 80%, #5e49ff 85%, transparent 85%, transparent 90%, #5e49ff 90%, #5e49ff 95%, transparent 95%, transparent 100%);
+  background-size: 150px;
+  background-position: center;
+  z-index: 1;
+  -webkit-animation: bar 120s linear infinite;
+          animation: bar 120s linear infinite;
+}
+.hr.anim:hover:before {
+  -webkit-animation-duration: 20s;
+          animation-duration: 20s;
+}
+.hr.anim:hover:after {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
