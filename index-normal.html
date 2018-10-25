@@ -49,6 +49,21 @@
 		}
 		</script>
 		
+		<script type="text/javascript">
+		
+			function subscribeEmail(){
+
+				var email = document.getElementById("email");
+				var val = email.value;
+				var ress = document.getElementById("result");
+				$.get("emailer.php", {email: val}).done(function(data){
+					ress.innerHTML = data;
+				});
+
+			}
+		
+		</script>
+		
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -163,9 +178,19 @@
 					<a class="btn btn-primary hvr-rectangle-out" href="#project">Read More...</a>
 									
 				</div>
-				
+								
 			</div>
 		
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12" style="text-align:center;">
+					
+					<input type="email" id="email" name="email" placeholder="Your Best Email!" />
+					<button onClick="subscribeEmail();">Subscribe Now!</button>
+					
+				</div>
+			</div>
 		</div>
 		<div class="container">
 			<div class="row">
