@@ -1,40 +1,38 @@
 <?php
 
- // Escape user inputs for security
-$email = mysqli_real_escape_string($mysqli, $_REQUEST['email']);
+	//Data connection to be filled
+	$server = "";
+	$username = "";
+	$password = "";
+	$database = "";
+	$table = "";
 
-//Data connection to be filled
-$server = "";
-$username = "root";
-$password = "";
-$database = "";
-$table = "";
-$fieldsCheck = "";
-$fieldsInsert = "";
-$fields = "";
+	// Create connection
+	$mysqli = new mysqli($server, $username, $password, $database);
 
-// Create connection
-$conn = new mysqli($server, $username, $password);
+	// check connection
+	if ($mysqli->connect_errno) {
+		printf("Connect failed: %s\n", $mysqli->connect_error);
+		exit();
+	}
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    mysql_select_db($database);
-}
+	// Escape user inputs for security
+	$email = mysqli_real_escape_string($mysqli, $_REQUEST['email']);
 
-$sql = "SELECT * FROM {$table} WHERE {$fieldsCheck}";
-$result = mysql_query($sql);
-$num_rows = mysql_num_rows($result);
+	$sql = "SELECT * FROM {$table} WHERE email = '{$email}'";
+	$result = mysqli_query($mysqli,$sql);
+	$num_rows = intval(mysqli_num_rows($result));
 
-if($num_rows == 1){
-  echo "You are alredy registered!";
-}else{
-  $sql = "INSERT INTO {$table} ($fields) ";
-  $result = mysql_query($sql);
-  if (!$result) {
-    die('Invalid query: ' . mysql_error());
-  }
-}
+	if($num_rows > 0){
+		echo "You are alredy registered!";
+	}else{
+		$sql = "INSERT INTO {$table} (email) values('{$email}') ";
+		$result = mysqli_query($mysqli,$sql);
+		if (!$result) {
+			die('Invalid query: ' . mysqli_error());
+		}else{
+			echo "Congratulations now you are part of our big family. Welcome!";
+		}
+	}
 
 ?>
