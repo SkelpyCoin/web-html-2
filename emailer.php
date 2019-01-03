@@ -15,10 +15,10 @@
 		printf("Connect failed: %s\n", $mysqli->connect_error);
 		exit();
 	}
-
 	// Escape user inputs for security
 	$email = mysqli_real_escape_string($mysqli, $_REQUEST['email']);
-
+	
+	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {	
 	$sql = "SELECT * FROM {$table} WHERE email = '{$email}'";
 	$result = mysqli_query($mysqli,$sql);
 	$num_rows = intval(mysqli_num_rows($result));
@@ -33,6 +33,11 @@
 		}else{
 			echo "Congratulations now you are part of our big family. Welcome!";
 		}
+	}
+	} else {
+	
+		 echo "Email address '$email' is considered invalid.\n"
+		
 	}
 
 ?>
